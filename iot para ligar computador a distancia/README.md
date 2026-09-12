@@ -1,4 +1,4 @@
-# iot para ligar um computador a distância
+# Descrição do projeto
 Este é um projeto de dispositivo para ligar computadores de mesa a distância via internet. Este dispositivo é ligado diretamente na placa mãe, e funciona por intermédio de um ESP32-WIFI.
 
 Para garantir a segurança da placa-mãe e, consequentemente, do computador, o dispositivo utiliza o CI PC817. 
