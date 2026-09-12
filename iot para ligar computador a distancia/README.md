@@ -7,4 +7,9 @@ Um octacoplador realiza a comunicação entre duas regiões isoladas de um circu
 Como observado na Figura 1, um sinal percorre o diodo infravermelho emissor (entre os pinos 1 e 2), este emite um sinal infravermelho para o receptor (entre os pinos 3 e 4). Dessa forma, um sinal é emitido sem a necessidade de conexão física entre as partes.
 Assim, problemas elétricos na parte do ESP32 não afetam a parte da placa-mãe, e vice-versa.
 
-![Texto Alternativo](Imagem do PC817)
+<div align="center"> Figura 1 </div>
+
+<p align="center">
+  <img src="imagens/imagem-octacoplador.png" width="500">
+</p>
+<div align="center"> Fonte: editor de esquemas do KiCad </div>
