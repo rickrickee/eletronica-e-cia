@@ -1,0 +1,6 @@
+# Descrição do repositório
+O objetivo deste repositório é disponibilizar projetos de eletrônica de nível simples a intermediário para o uso aberto da comunidade.
+O atual foco é criar dispositivos de automação residencial e home lab. Os projetos são baseados em Arduino, ESP32 e devkits como OrangePi e RaspberryPi.
+Também serão disponibilizados alguns softwares simples, mas não é o objetivo do repositório. Seria mais um "bônus".
+
+#### Todos os projetos são aberto e de livre replicação
