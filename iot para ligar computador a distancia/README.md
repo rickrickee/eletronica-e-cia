@@ -13,3 +13,5 @@ Assim, problemas elétricos na parte do ESP32 não afetam a parte da placa-mãe,
   <img src="imagens/imagem-octacoplador.png" width="500">
 </p>
 <div align="center"> Fonte: editor de esquemas do KiCad </div>
+
+Na Figura 2, é demonstrada uma imagem do esquema do circuito. As entradas Power SW+ e Power SW- representam os dois pinos do cabo responsável por ligar o botão liga/desliga do computador a placa mãe. Neste esquema, elas são ligadas em paralelo a saída do PC817, permitindo o botão liga/desliga funcionar independentemente. O resistor R1, de 200 ohms, limita a corrente que chega ao LED infravermelho interno do octacoplador. Sem ele, o LED pode sofrer sobrecarga e apresentar defeito. O resistor R2, de mesmo valor, faz parte de um circuito pull-dowm, responsável por manter o nível lógico baixo na segunda parte do circuito.
