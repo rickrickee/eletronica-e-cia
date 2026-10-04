@@ -31,28 +31,38 @@ Pelo aplicativo do celular, dentro do template, crie um novo widget do tipo "bot
 
 # Programação do ESP32 e teste
 
-*OBSERVAÇÃO: garanta que a comunicação entre computador e ESP32 está ocorrendo corretamente. Também confira se o Arduino IDE está devidamente configurado para manipular a placa. Instale o core para ESP32 e a biblioteca Blynk, de Volodymyr Shymanskyy*
+*OBSERVAÇÃO: garanta que a comunicação entre computador e ESP32 está ocorrendo corretamente. Também confira se o Arduino IDE está devidamente configurado para manipular a placa. Instale o core para ESP32 e a biblioteca Blynk, de Volodymyr Shymanskyy; *
 
-Ligue sua placa ESP32 com WI-FI ao computador via cabo, e inicie o Arduino IDE. Copie e cole [Código do ESP32](liga_desliga_pc_generico.cpp)) na IDE, substituindo as áreas sinalizadas com suas informações (nome do wifi, senha, token de autenticação...).
-
+Ligue sua placa ESP32 com WI-FI ao computador via cabo, e inicie o Arduino IDE. Copie e cole [Código do ESP32](liga_desliga_pc_generico.cpp) na IDE. O ESP32 vai criar uma rede WIFI denominada "iot_Config". Conecte nela e vá para as opções de configuração/gerenciamento da rede. Após isso, um menu irá aparecer na tela; utilize ele para cadastrar uma rede WIFI no ESP32. Se desejar mudar de rede, pressione o botão "boot" por 3 segundos e comece a configuração do zero.
 ```
 #define BLYNK_TEMPLATE_ID   "ID do template"
 #define BLYNK_TEMPLATE_NAME "Nome do template"
 #define BLYNK_AUTH_TOKEN    "token para conectar ao template no Blynk"
 #include <WiFi.h>
+#include <WiFiManager.h>
 #include <BlynkSimpleEsp32.h>
 
-char ssid[] = "Nome da rede wifi", senha[] = "senha da rede";
-const int PINO = 14; //pino utilizado no ESP32
-
+const int PINO = 14;
+const int BOTAO = 0;   // botão BOOT da placa
 BLYNK_WRITE(V0) { digitalWrite(PINO, param.asInt()); }
-
 void setup() {
   pinMode(PINO, OUTPUT);
-  Blynk.begin(BLYNK_AUTH_TOKEN, ssid, senha);
+  pinMode(BOTAO, INPUT_PULLUP);
+  WiFiManager wm;
+  wm.autoConnect("Medidor-Config");   // abre o portal se não houver rede salva
+  Blynk.config(BLYNK_AUTH_TOKEN);
 }
-
-void loop() { Blynk.run(); }
+void loop() {
+  // segurar o botão por 3 s abre o portal de novo
+  if (digitalRead(BOTAO) == LOW) {
+    delay(3000);
+    if (digitalRead(BOTAO) == LOW) {
+      WiFiManager wm;
+      wm.startConfigPortal("iot-Config");
+    }
+  }
+  if (WiFi.status() == WL_CONNECTED) Blynk.run();
+}
 ```
 
 Após isso, verifique e carregue o código no ESP32. Fique atento se o modo de download do ESP32 está ativo; isso pode gerar erros de carregamento. Após a devida configuração, conecte a placa a qualquer fonte de alimentação para testar. Se estiver tudo ok, o dispositivo aparecerá como "Online" no template do Blynk. A Figura 3 demonstra um circuito de teste; se tudo estiver ok, ao acionar o botão no app, o LED irá piscar na protoboard.
