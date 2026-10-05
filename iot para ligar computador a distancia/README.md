@@ -43,13 +43,13 @@ Ligue sua placa ESP32 com WI-FI ao computador via cabo, e inicie o Arduino IDE. 
 #include <BlynkSimpleEsp32.h>
 
 const int PINO = 14;
-const int BOTAO = 0;   // botão BOOT da placa
+const int BOTAO = 0;  
 BLYNK_WRITE(V0) { digitalWrite(PINO, param.asInt()); }
 void setup() {
   pinMode(PINO, OUTPUT);
   pinMode(BOTAO, INPUT_PULLUP);
   WiFiManager wm;
-  wm.autoConnect("Medidor-Config");   // abre o portal se não houver rede salva
+  wm.autoConnect("Medidor-Config"); 
   Blynk.config(BLYNK_AUTH_TOKEN);
 }
 void loop() {
@@ -66,5 +66,3 @@ void loop() {
 ```
 
 Após isso, verifique e carregue o código no ESP32. Fique atento se o modo de download do ESP32 está ativo; isso pode gerar erros de carregamento. Após a devida configuração, conecte a placa a qualquer fonte de alimentação para testar. Se estiver tudo ok, o dispositivo aparecerá como "Online" no template do Blynk. A Figura 3 demonstra um circuito de teste; se tudo estiver ok, ao acionar o botão no app, o LED irá piscar na protoboard.
-
-# Montagem do circuito na placa mãe do computador
