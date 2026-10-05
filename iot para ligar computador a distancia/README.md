@@ -53,7 +53,6 @@ void setup() {
   Blynk.config(BLYNK_AUTH_TOKEN);
 }
 void loop() {
-  // segurar o botão por 3 s abre o portal de novo
   if (digitalRead(BOTAO) == LOW) {
     delay(3000);
     if (digitalRead(BOTAO) == LOW) {
